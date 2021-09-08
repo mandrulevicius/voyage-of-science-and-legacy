@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Interpreter.gd" type="Script" id=2]
@@ -12,9 +12,19 @@
 [ext_resource path="res://Assets/PhotoFrame.png" type="Texture" id=10]
 [ext_resource path="res://Assets/Jupiter.png" type="Texture" id=11]
 [ext_resource path="res://Assets/StarsWithEarthInSunbeam.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Fonts/Kenney Future Narrow.ttf" type="DynamicFontData" id=13]
+[ext_resource path="res://Assets/Fonts/Inconsolata/Inconsolata-VariableFont_wdth,wght.ttf" type="DynamicFontData" id=15]
 
-[sub_resource type="Animation" id=1]
-resource_name = "Alarm"
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 15 )
+
+[sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 15 )
+
+[sub_resource type="DynamicFont" id=3]
+font_data = ExtResource( 13 )
+
+[sub_resource type="Animation" id=4]
 length = 1.5
 loop = true
 tracks/0/type = "value"
@@ -30,8 +40,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 0, 0, 0 ), Color( 1, 0, 0, 0.509804 ), Color( 1, 0, 0, 0.509804 ), Color( 1, 0, 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "DeeperSpaceToDeepest"
+[sub_resource type="Animation" id=5]
 length = 6.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("LightSpaceBackground:modulate")
@@ -70,8 +79,7 @@ tracks/2/keys = {
 "values": [ Color( 1, 1, 1, 0.509804 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "DeeperSpaceToDeepest"
+[sub_resource type="Animation" id=6]
 length = 6.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("LightSpaceBackground:modulate")
@@ -110,7 +118,7 @@ tracks/2/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.509804 ) ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=7]
 length = 6.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("AtmosphereBackround:modulate")
@@ -137,7 +145,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1, 1 ), Vector2( 10, 10 ) ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=8]
 tracks/0/type = "value"
 tracks/0/path = NodePath("HUD/ConsoleContainer/VBoxContainer/Output:visible_characters")
 tracks/0/interp = 1
@@ -151,7 +159,7 @@ tracks/0/keys = {
 "values": [  ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=9]
 length = 5.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("PhotoFrame:visible")
@@ -178,7 +186,7 @@ tracks/1/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=10]
 length = 12.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Jupiter:scale")
@@ -217,7 +225,7 @@ tracks/2/keys = {
 "values": [ true, true, false ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=11]
 length = 6.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("HUD/ConsoleContainer:modulate")
@@ -244,7 +252,7 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=12]
 length = 6.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Stars:position")
@@ -271,7 +279,7 @@ tracks/1/keys = {
 "values": [ Vector2( -960, 540 ), Vector2( 960, 540 ) ]
 }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=13]
 length = 6.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Camera2D:zoom")
@@ -297,6 +305,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [ Vector2( 0, 0 ), Vector2( 40, -40 ) ]
 }
+
+[sub_resource type="DynamicFont" id=14]
+size = 32
+outline_size = 4
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 13 )
+
+[sub_resource type="DynamicFont" id=15]
+size = 32
+outline_size = 4
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 15 )
 
 [node name="Main" type="Node"]
 script = ExtResource( 1 )
@@ -359,13 +379,14 @@ __meta__ = {
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 497.0
-margin_bottom = 175.0
+margin_bottom = 179.0
 
 [node name="Output" type="RichTextLabel" parent="HUD/ConsoleContainer/VBoxContainer"]
 margin_right = 490.0
 margin_bottom = 140.0
 rect_min_size = Vector2( 0, 140 )
 focus_mode = 2
+custom_fonts/normal_font = SubResource( 1 )
 visible_characters = 0
 text = "
 "
@@ -378,22 +399,24 @@ __meta__ = {
 [node name="HBoxContainer" type="HBoxContainer" parent="HUD/ConsoleContainer/VBoxContainer"]
 margin_top = 144.0
 margin_right = 490.0
-margin_bottom = 168.0
+margin_bottom = 172.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="PathLabel" type="Label" parent="HUD/ConsoleContainer/VBoxContainer/HBoxContainer"]
 margin_top = 5.0
-margin_right = 54.0
-margin_bottom = 19.0
-text = "ROOT:\\>"
+margin_right = 96.0
+margin_bottom = 23.0
+custom_fonts/font = SubResource( 2 )
+text = "C:\\Terminal>"
 
 [node name="CommandLine" type="LineEdit" parent="HUD/ConsoleContainer/VBoxContainer/HBoxContainer"]
-margin_left = 58.0
+margin_left = 100.0
 margin_right = 490.0
-margin_bottom = 24.0
+margin_bottom = 28.0
 size_flags_horizontal = 3
+custom_fonts/font = SubResource( 3 )
 editable = false
 caret_blink = true
 __meta__ = {
@@ -471,28 +494,48 @@ current = true
 script = ExtResource( 5 )
 
 [node name="AlarmAnimation" type="AnimationPlayer" parent="."]
-anims/Alarm = SubResource( 1 )
+anims/Alarm = SubResource( 4 )
 
 [node name="SkyChangeAnimation" type="AnimationPlayer" parent="."]
-anims/DeeperSpaceToDeepest = SubResource( 2 )
-anims/LightSpaceToDeeper = SubResource( 3 )
-anims/SkyToLightSpace = SubResource( 4 )
+anims/DeeperSpaceToDeepest = SubResource( 5 )
+anims/LightSpaceToDeeper = SubResource( 6 )
+anims/SkyToLightSpace = SubResource( 7 )
 
 [node name="WritingAnimation" type="AnimationPlayer" parent="."]
-anims/Writing = SubResource( 5 )
+anims/Writing = SubResource( 8 )
 
 [node name="Tween" type="Tween" parent="."]
 
 [node name="PhotoAnimation" type="AnimationPlayer" parent="."]
-anims/PhotoFrameCapture = SubResource( 6 )
+anims/PhotoFrameCapture = SubResource( 9 )
 
 [node name="JupiterAnimation" type="AnimationPlayer" parent="."]
-anims/JupiterFlyby = SubResource( 7 )
+anims/JupiterFlyby = SubResource( 10 )
 
 [node name="EndAnimation" type="AnimationPlayer" parent="."]
-anims/End = SubResource( 8 )
+anims/End = SubResource( 11 )
 
 [node name="EarthPhotoAnimation" type="AnimationPlayer" parent="."]
-anims/TurnAround = SubResource( 9 )
-anims/Zoom = SubResource( 10 )
+anims/TurnAround = SubResource( 12 )
+anims/Zoom = SubResource( 13 )
+
+[node name="Comments" type="RichTextLabel" parent="."]
+margin_left = 3.41229
+margin_top = 1203.86
+margin_right = 676.412
+margin_bottom = 1953.86
+custom_fonts/mono_font = SubResource( 14 )
+custom_fonts/normal_font = SubResource( 15 )
+custom_colors/default_color = Color( 1, 1, 1, 1 )
+custom_colors/selection_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_selected = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 1, 1, 1, 1 )
+tab_size = 2
+text = "ToDo:
+	-Audio
+	-Gameplay - restart only current mission on failure."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="text_entered" from="HUD/ConsoleContainer/VBoxContainer/HBoxContainer/CommandLine" to="." method="_on_CommandLine_text_entered"]
